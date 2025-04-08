@@ -81,6 +81,19 @@ if __name__ == "__main__":
         help="Query to use to search product",
         default="I need a new tent for 4 people, what would you recommend?",
     )
+
+    ## Telemetry config
+
+    # get the registration status for the resource provider 'Microsoft.OperationalInsights'
+    # to check if the resource provider is registered
+    # Command: az provider register -n Microsoft.OperationalInsights
+
+    # register the resource provider 'Microsoft.OperationalInsights' if not registered
+    # Command: az provider register -n Microsoft.OperationalInsights
+
+    # check the registration status for the resource provider 'Microsoft.OperationalInsights'
+    # Command: az provider show -n Microsoft.OperationalInsights
+    
     parser.add_argument(
         "--enable-telemetry",
         action="store_true",
