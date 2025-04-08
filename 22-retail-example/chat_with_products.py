@@ -53,6 +53,7 @@ def chat_with_products(messages: list, context: dict = None) -> dict:
                 messages=system_message + messages,
                 **grounded_chat_prompt.parameters,
             )
+            break  # exit loop if successful
         except HttpResponseError as e:
             if e.status_code == 429:
                 logger.warning("Rate limit error, retrying after 60 seconds...")
