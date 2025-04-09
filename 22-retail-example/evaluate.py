@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import ConnectionType
-from azure.ai.evaluation import evaluate, GroundednessEvaluator
+from azure.ai.evaluation import evaluate, GroundednessEvaluator, CoherenceEvaluator
 from azure.identity import DefaultAzureCredential
 
 from chat_with_products import chat_with_products
@@ -28,6 +28,8 @@ evaluator_model = {
 
 groundedness = GroundednessEvaluator(evaluator_model)
 
+coherence = CoherenceEvaluator(evaluator_model)
+
 def evaluate_chat_with_products(query):
     response = chat_with_products(messages=[{"role": "user", "content": query}])
     return {"response": response["message"].content, "context": response["context"]["grounding_data"]}
@@ -52,6 +54,7 @@ if __name__ == "__main__":
         evaluation_name="evaluate_chat_with_products",
         evaluators={
             "groundedness": groundedness,
+            "coherence": coherence,
         },
         evaluator_config={
             "default": {
