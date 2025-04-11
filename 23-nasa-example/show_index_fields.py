@@ -8,7 +8,7 @@ import os
 load_dotenv()
 
 index_client = SearchIndexClient(endpoint=os.environ['AZURE_SEARCH_SERVICE'], credential=DefaultAzureCredential())
-index = index_client.get_index("py-rag-tutorial-idx")
+index = index_client.get_index(os.environ['INDEX'])
 
 for field in index.fields:
     print(f"{field.name} ({field.type})")

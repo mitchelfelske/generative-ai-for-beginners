@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Container name
-container_name = "nasa-ebooks-pdfs-all"
+container_name = os.environ["CONTAINER"]
 
 # Get connection string from environment variable
 connection_string = os.getenv("AZURE_STORAGE_CONNECTION")

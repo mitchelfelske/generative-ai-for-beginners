@@ -19,9 +19,6 @@ import os
 
 load_dotenv()
 
-# Create a skillset  
-skillset_name = "py-rag-tutorial-ss"
-
 split_skill = SplitSkill(  
     description="Split skill to chunk documents",  
     text_split_mode="pages",  
@@ -89,7 +86,7 @@ cognitive_services_account = CognitiveServicesAccountKey(key=os.environ['AZURE_A
 skills = [split_skill, embedding_skill, entity_skill]
 
 skillset = SearchIndexerSkillset(  
-    name=skillset_name,  
+    name=os.environ['SKILLSET'],  
     description="Skillset to chunk documents and generating embeddings",  
     skills=skills,  
     index_projection=index_projections,

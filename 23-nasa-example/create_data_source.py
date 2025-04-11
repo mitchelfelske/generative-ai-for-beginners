@@ -15,16 +15,13 @@ indexer_client = SearchIndexerClient(
     credential=DefaultAzureCredential()
 )
 
-# Defines origin container
-container = SearchIndexerDataContainer(name="nasa-ebooks-pdfs-all")
-
 # Creates a data source connection to the Azure Blob Storage container
 # Intent: get pdfs from blob storage
 # Container name: "nasa-ebooks-pdfs-all"
 data_source_connection = SearchIndexerDataSourceConnection(
-    name="py-rag-tutorial-ds",
+    name=os.environ['DATA_SOURCE'],
     type="azureblob",
-    container=container,
+    container=SearchIndexerDataContainer(name=os.environ["CONTAINER"]),
     connection_string=os.environ["AZURE_STORAGE_CONNECTION"]
 )
 

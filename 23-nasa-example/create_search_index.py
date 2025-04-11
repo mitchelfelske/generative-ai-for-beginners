@@ -34,7 +34,6 @@ search_connection = project.connections.get_default(
 )
 
 # Create a search index  
-index_name = "py-rag-tutorial-idx"
 index_client = SearchIndexClient(endpoint=search_connection.endpoint_url, credential=AzureKeyCredential(key=search_connection.key))  
 fields = [
     SearchField(name="parent_id", type=SearchFieldDataType.String),  
@@ -71,6 +70,6 @@ vector_search = VectorSearch(
 )  
   
 # Create the search index
-index = SearchIndex(name=index_name, fields=fields, vector_search=vector_search)  
+index = SearchIndex(name=os.environ['INDEX'], fields=fields, vector_search=vector_search)  
 result = index_client.create_or_update_index(index)  
 print(f"{result.name} created")  

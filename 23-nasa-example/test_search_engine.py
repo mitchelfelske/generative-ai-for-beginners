@@ -7,12 +7,10 @@ import os
 
 load_dotenv()
 
-index_name = "py-rag-tutorial-idx"
-
 # Vector Search using text-to-vector conversion of the query string
 query = "where is Tsauchab River located?"  
 
-search_client = SearchClient(endpoint=os.environ['AZURE_SEARCH_SERVICE'], credential=DefaultAzureCredential(), index_name=index_name)
+search_client = SearchClient(endpoint=os.environ['AZURE_SEARCH_SERVICE'], credential=DefaultAzureCredential(), index_name=os.environ['INDEX'])
 vector_query = VectorizableTextQuery(text=query, k_nearest_neighbors=50, fields="text_vector")
   
 docs = search_client.search(  

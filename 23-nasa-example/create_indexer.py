@@ -9,20 +9,16 @@ import os
 
 load_dotenv()
 
-skillset_name = "py-rag-tutorial-ss"
-index_name = "py-rag-tutorial-idx"
-data_source_name = "py-rag-tutorial-ds"
-
 # Create an indexer  
-indexer_name = "py-rag-tutorial-idxr" 
+indexer_name = os.environ["INDEXER"] 
 indexer_parameters = None
 
 indexer = SearchIndexer(  
     name=indexer_name,  
     description="Indexer to index documents and generate embeddings",  
-    skillset_name=skillset_name,  
-    target_index_name=index_name,  
-    data_source_name=data_source_name,
+    skillset_name=os.environ['SKILLSET'],  
+    target_index_name=os.environ['INDEX'],  
+    data_source_name=os.environ['DATA_SOURCE'],
     parameters=indexer_parameters
 )  
 
